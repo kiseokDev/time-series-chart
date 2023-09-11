@@ -31,7 +31,7 @@
     "lint": "eslint --fix --cache .",
     "format": "prettier --cache --write .",
     "server": "json-server --watch ./db.json --port 4000",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\" --detectOpenHandles",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -55,11 +55,13 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/react-router-dom": "^5.3.3",
+    "@types/recoil": "^0.0.9",
     "axios-mock-adapter": "^1.21.5",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
+    "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "ts-jest": "^29.1.1"
