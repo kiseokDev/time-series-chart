@@ -7,7 +7,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/lodash": "^4.14.198",
     "@types/node": "^16.18.48",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
@@ -31,6 +30,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --fix --cache .",
     "format": "prettier --cache --write .",
+    "server": "json-server --watch ./db.json --port 4000",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -53,7 +53,6 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
-    "@types/lodash": "^4.14.198",
     "@types/react-router-dom": "^5.3.3",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
