@@ -1,10 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Chart from 'component/Chart';
+import { RecoilRoot } from 'recoil';
 
 function App() {
-  return <Chart></Chart>;
+  return (
+    <RecoilRoot>
+      <Chart />
+    </RecoilRoot>
+  );
 }
 
 export default App;
