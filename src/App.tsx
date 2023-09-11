@@ -1,10 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Chart from 'component/Chart';
+import { Suspense } from 'react';
+import { RecoilRoot } from 'recoil';
 
 function App() {
-  return <Chart></Chart>;
+  return (
+    <RecoilRoot>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Chart />
+      </Suspense>
+    </RecoilRoot>
+  );
 }
 
 export default App;
