@@ -10,7 +10,7 @@ import {
   Legend,
   Tooltip,
 } from 'chart.js';
-import ChartComponent from 'component/ChartComponent';
+import Chart from 'pages/Chart';
 
 ChartJS.register(
   LinearScale,
@@ -26,7 +26,7 @@ function App() {
   return (
     <RecoilRoot>
       <Suspense fallback={<div>Loading...</div>}>
-        <ChartComponent />
+        <Chart />
       </Suspense>
     </RecoilRoot>
   );

@@ -2,7 +2,7 @@
 import React, { Suspense } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
-import Chart from 'component/ChartComponent';
+import Chart from 'pages/Chart';
 import { getDefaultTimeSeriesData } from 'service/timeSeriesData';
 import App from 'App';
 import MOCKDATA from '__mocks__/data.json';
