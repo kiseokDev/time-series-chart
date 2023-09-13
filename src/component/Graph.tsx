@@ -1,22 +1,9 @@
 import 'chart.js/auto';
-import {
-  Chart,
-  getDatasetAtEvent,
-  getElementAtEvent,
-  getElementsAtEvent,
-} from 'react-chartjs-2';
+import { Chart, getElementsAtEvent } from 'react-chartjs-2';
 import { TimeSeriesData } from 'types';
 import 'chartjs-adapter-moment';
-import {
-  ActiveElement,
-  ChartComponent,
-  ChartConfiguration,
-  ChartData,
-  ChartOptions,
-  ChartTypeRegistry,
-  Scale,
-} from 'chart.js';
-import { MouseEvent, createRef, useEffect, useRef } from 'react';
+import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
+import { useRef } from 'react';
 
 interface Props {
   data: TimeSeriesData;
@@ -57,9 +44,8 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
             x: date,
             y: data[date].value_area,
           })),
-          // 아래에서 backgroundColor를 수정합니다.
           backgroundColor: 'rgba(230, 30, 113, 0.864)',
-          borderWidth: 0, // 경계선의 두께를 0으로 설정
+          borderWidth: 0,
           fill: true,
           pointRadius: 0,
           tension: 0.2,
@@ -73,7 +59,7 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
             y: data[date].value_bar,
             id: data[date].id,
           })),
-          // 아래에서 backgroundColor를 수정합니다.
+
           backgroundColor: allDates.map(date =>
             data[date].id === selectedId ? 'darkblue' : '#69b7e8'
           ),
@@ -82,24 +68,9 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
       ],
     };
   const options: ChartOptions<keyof ChartTypeRegistry> = {
-    // onClick: (event, activeElements) => {
-    //   if (activeElements && activeElements.length > 0) {
-    //     const firstElement = activeElements[0] as any;
-    //     const clickedDataId =
-    //       firstElement._datasetIndex === 1
-    //         ? data[allDates[firstElement._index]].id
-    //         : null;
-    //     if (clickedDataId) {
-    //       handleFilterById(clickedDataId);
-    //     }
-    //   }
-    // },
-    // onClick: handleChartClick,
     scales: {
       x: {
         type: 'time',
-        // min: new Date(firstDate.getTime() - 1000 * 35).toISOString(),
-        // max: new Date(lastDate.getTime() + 1000 * 35).toISOString(),
         time: {
           parser: 'YYYY-MM-DD HH:mm:ss',
           unit: 'second',
