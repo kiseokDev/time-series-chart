@@ -4,7 +4,7 @@ import { useChart } from 'hooks/useChart';
 // import { Graph } from './Grapth';
 import { TestGraph } from './TestGraph';
 import { useState } from 'react';
-import { Graph } from './Grapth';
+import { Graph } from './Graph';
 const TestChart = () => {
   const { data } = useChart();
   const [colorOverride, setColorOverride] = useState<
@@ -38,7 +38,7 @@ const TestChart = () => {
         </button>
       </div>
       {/* <TestGraph data={data} colorOverride={colorOverride}></TestGraph> */}
-      <Graph data={data}></Graph>
+      {/* <Graph data={data}></Graph> */}
     </div>
   );
 };

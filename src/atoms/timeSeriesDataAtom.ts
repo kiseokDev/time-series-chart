@@ -36,3 +36,8 @@ export const filteredDataState = atom({
   key: 'filteredDataState',
   default: new Set(),
 });
+
+export const selectedIdState = atom<string | null>({
+  key: 'selectedIdState',
+  default: null,
+});

@@ -3,14 +3,21 @@ import { useChart } from 'hooks/useChart';
 // import 'react-tooltip/dist/react-tooltip.css';
 // import { Graph } from './Grapth';
 import { TestGraph } from './TestGraph';
+import { Graph } from './Graph';
 
-const Chart = () => {
-  const { data, uniqueIds, filtered, handleFilterById } = useChart();
+const ChartComponent = () => {
+  const { data, uniqueIds, handleFilterById, selectedId } = useChart();
 
   return (
     <div>
       <h1>Chart</h1>
       <div>
+        <button
+          data-testid="filter-button"
+          onClick={() => handleFilterById('')}
+        >
+          해체
+        </button>
         {uniqueIds.map(id => (
           <button
             data-testid="filter-button"
@@ -44,11 +51,14 @@ const Chart = () => {
           );
         })}
       </ul> */}
-      {/* <Graph data={data}></Graph> */}
-      <div className="App">
-        <TestGraph data={data}></TestGraph>
-      </div>
+      {/* <div className="App"> */}
+      <Graph
+        data={data}
+        selectedId={selectedId}
+        handleFilterById={handleFilterById}
+      ></Graph>
+      {/* </div> */}
     </div>
   );
 };
-export default Chart;
+export default ChartComponent;
