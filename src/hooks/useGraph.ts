@@ -4,6 +4,7 @@ import { TimeSeriesData } from 'types';
 
 export const useGraph = (
   data: TimeSeriesData,
+  //eslint-disable-next-line no-unused-vars
   handleFilterById: (id: string) => void
 ) => {
   const chartRef = useRef(null);

@@ -4,12 +4,11 @@ import { Chart } from 'react-chartjs-2';
 import { TimeSeriesData } from 'types';
 import { ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { useGraph } from 'hooks/useGraph';
-import { initConfig } from 'utils/chartConfig';
-import { initOptions } from 'utils/chartOptions';
 
 interface Props {
   data: TimeSeriesData;
   selectedId: string | null;
+  //eslint-disable-next-line no-unused-vars
   handleFilterById: (id: string) => void;
 }
 

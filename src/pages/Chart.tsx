@@ -1,11 +1,14 @@
 import { useChart } from 'hooks/useChart';
-import Graph from '../component/Graph';
 import styled from 'styled-components';
 import FilterButtons from 'component/FilterButtons';
 import TestGraph from 'component/TestGraph';
 
 const ChartComponent = () => {
-  const { data, uniqueIds, handleFilterById, selectedId } = useChart();
+  const { data, uniqueIds, selectedId, setSelectedId } = useChart();
+
+  const handleFilterById = (id: string) => {
+    setSelectedId(id);
+  };
 
   return (
     <GraphWrapper>
