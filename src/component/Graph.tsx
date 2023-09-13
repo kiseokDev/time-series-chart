@@ -25,9 +25,6 @@ interface Props {
 }
 
 export default function Graph({ data, selectedId, handleFilterById }: Props) {
-  useEffect(() => {
-    console.log('Selected ID changed:', selectedId);
-  }, [selectedId]);
   const chartRef = useRef(null);
   const allDates = Object.keys(data);
 

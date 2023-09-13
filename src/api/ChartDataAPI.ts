@@ -16,13 +16,6 @@ export class ChartDataAPI {
   }
 
   async getTimeSeriesData(): Promise<TimeSeriesData> {
-    const customOptions = {
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        Pragma: 'no-cache',
-        Expires: '0',
-      },
-    };
     return await this.#client.get<TimeSeriesData>(this.#endPoint);
   }
 }
