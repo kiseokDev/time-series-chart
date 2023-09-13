@@ -21,7 +21,9 @@
 
 ## 🔗 배포 링크
 
-http://time-series-chart.s3-website.ap-northeast-2.amazonaws.com/
+[http://time-series-chart.s3-website.ap-northeast-2.amazonaws.com/](http://time-series-chart.s3-website.ap-northeast-2.amazonaws.com/)
+![image](https://github.com/kiseokDev/time-series-chart/assets/107299502/071c3811-4182-4bde-8e88-61871751b175)
+
 
 
 <br>
