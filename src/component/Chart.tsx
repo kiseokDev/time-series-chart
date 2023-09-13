@@ -1,6 +1,8 @@
 import { useChart } from 'hooks/useChart';
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
+// import { Tooltip } from 'react-tooltip';
+// import 'react-tooltip/dist/react-tooltip.css';
+// import { Graph } from './Grapth';
+import { TestGraph } from './TestGraph';
 
 const Chart = () => {
   const { data, uniqueIds, filtered, handleFilterById } = useChart();
@@ -19,7 +21,7 @@ const Chart = () => {
           </button>
         ))}
       </div>
-      <ul>
+      {/* <ul>
         {Object.keys(data).map(date => {
           const chartData = data[date];
           const isFiltered = filtered.has(date);
@@ -41,7 +43,11 @@ const Chart = () => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
+      {/* <Graph data={data}></Graph> */}
+      <div className="App">
+        <TestGraph data={data}></TestGraph>
+      </div>
     </div>
   );
 };

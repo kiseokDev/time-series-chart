@@ -1,9 +1,13 @@
 // Chart.test.js
-import React from 'react';
+import React, { Suspense } from 'react';
 import { render, waitFor } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
+import Chart from 'component/Chart';
 import { getDefaultTimeSeriesData } from 'service/timeSeriesData';
 import App from 'App';
 import MOCKDATA from '__mocks__/data.json';
+import { ChartDataAPI } from 'api/ChartDataAPI';
+import axios from 'axios';
 
 const mockedGetDefaultTimeSeriesData =
   getDefaultTimeSeriesData as jest.MockedFunction<
@@ -15,18 +19,23 @@ jest.mock('service/timeSeriesData', () => ({
   getDefaultTimeSeriesData: jest.fn(),
 }));
 
-describe('<Chart />', () => {
-  beforeEach(() => {
-    mockedGetDefaultTimeSeriesData.mockClear();
-  });
-  afterEach(() => {
-    jest.clearAllTimers();
-  });
+beforeEach(() => {
+  mockedGetDefaultTimeSeriesData.mockClear();
+});
+afterEach(() => {
+  jest.clearAllTimers();
+});
 
+describe('<Chart />', () => {
   it('renders uniqueIds correctly', async () => {
     mockedGetDefaultTimeSeriesData.mockResolvedValue(MOCKDATA.data);
-
-    const { queryAllByTestId } = render(<App />);
+    const { queryAllByTestId } = render(
+      <RecoilRoot>
+        <Suspense>
+          <Chart />
+        </Suspense>
+      </RecoilRoot>
+    );
 
     await waitFor(() => {
       // 버튼의 개수를 확인
