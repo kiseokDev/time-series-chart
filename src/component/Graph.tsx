@@ -34,40 +34,43 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
     }
   };
 
-  const config: ChartData<keyof ChartTypeRegistry, { x: string; y: number }[]> =
-    {
-      datasets: [
-        {
-          type: 'line' as const,
-          yAxisID: 'left-y-axis',
-          label: 'value_area',
-          data: allDates.map(date => ({
-            x: date,
-            y: data[date].value_area,
-          })),
-          backgroundColor: 'rgba(230, 30, 113, 0.864)',
-          borderWidth: 0,
-          fill: true,
-          pointRadius: 0,
-          tension: 0.2,
-        },
-        {
-          type: 'bar' as const,
-          label: 'value_bar',
-          yAxisID: 'right-y-axis',
-          data: allDates.map(date => ({
-            x: date,
-            y: data[date].value_bar,
-            id: data[date].id,
-          })),
+  const config: ChartData<
+    keyof ChartTypeRegistry,
+    { x: string; y: number; id: string }[]
+  > = {
+    datasets: [
+      {
+        type: 'line' as const,
+        yAxisID: 'left-y-axis',
+        label: 'value_area',
+        data: allDates.map(date => ({
+          x: date,
+          y: data[date].value_area,
+          id: data[date].id,
+        })),
+        backgroundColor: 'rgba(230, 30, 113, 0.864)',
+        borderWidth: 0,
+        fill: true,
+        pointRadius: 0,
+        tension: 0.2,
+      },
+      {
+        type: 'bar' as const,
+        label: 'value_bar',
+        yAxisID: 'right-y-axis',
+        data: allDates.map(date => ({
+          x: date,
+          y: data[date].value_bar,
+          id: data[date].id,
+        })),
 
-          backgroundColor: allDates.map(date =>
-            data[date].id === selectedId ? 'darkblue' : '#69b7e8'
-          ),
-          borderWidth: 0,
-        },
-      ],
-    };
+        backgroundColor: allDates.map(date =>
+          data[date].id === selectedId ? 'darkblue' : '#69b7e8'
+        ),
+        borderWidth: 0,
+      },
+    ],
+  };
   const options: ChartOptions<keyof ChartTypeRegistry> = {
     scales: {
       x: {
@@ -100,6 +103,37 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
         },
       },
     },
+    plugins: {
+      tooltip: {
+        enabled: true,
+        displayColors: false,
+        mode: 'nearest',
+        intersect: false,
+        callbacks: {
+          title: function (tooltipItems) {
+            const tooltipItem = tooltipItems[0];
+            const x = tooltipItem.label || '';
+            return `${x}`; // Date will serve as the title
+          },
+          label: function (tooltipItem) {
+            const dataset = config.datasets[tooltipItem.datasetIndex];
+            const currentData = dataset.data[tooltipItem.dataIndex];
+            const id = currentData.id || '';
+            const valueAreaDataset = config.datasets[0];
+            const valueBarDataset = config.datasets[1];
+            const valueArea =
+              valueAreaDataset.data[tooltipItem.dataIndex].y || 0;
+            const valueBar = valueBarDataset.data[tooltipItem.dataIndex].y || 0;
+
+            return [
+              `id: ${id}`,
+              `${valueAreaDataset.label || ''}: ${valueArea}`,
+              `${valueBarDataset.label || ''}: ${valueBar}`,
+            ];
+          },
+        },
+      },
+    },
   };
 
   return (
@@ -112,27 +146,3 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
     />
   );
 }
-
-const GraphWrapper = styled.div`
-  text-align: center;
-
-  .App-logo {
-    height: 60vmin;
-    pointer-events: none;
-  }
-
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-
-  .App-link {
-    color: #61dafb;
-  }
-`;
