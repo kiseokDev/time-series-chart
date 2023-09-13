@@ -1,5 +1,4 @@
 export {
-  timeSeriesDataState,
   filteredDataState,
   uniqueIdsState,
   fetchedTimeSeriesDataState,

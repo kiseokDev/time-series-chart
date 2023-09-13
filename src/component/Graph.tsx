@@ -16,7 +16,7 @@ import {
   ChartTypeRegistry,
   Scale,
 } from 'chart.js';
-import { MouseEvent, createRef, useRef } from 'react';
+import { MouseEvent, createRef, useEffect, useRef } from 'react';
 
 interface Props {
   data: TimeSeriesData;
@@ -24,7 +24,10 @@ interface Props {
   handleFilterById: (id: string) => void;
 }
 
-export function Graph({ data, selectedId, handleFilterById }: Props) {
+export default function Graph({ data, selectedId, handleFilterById }: Props) {
+  useEffect(() => {
+    console.log('Selected ID changed:', selectedId);
+  }, [selectedId]);
   const chartRef = useRef(null);
   const allDates = Object.keys(data);
 
@@ -77,7 +80,6 @@ export function Graph({ data, selectedId, handleFilterById }: Props) {
           backgroundColor: allDates.map(date =>
             data[date].id === selectedId ? 'darkblue' : '#69b7e8'
           ),
-          borderColor: '#69b7e8', // 옅은 하늘색
           borderWidth: 0,
         },
       ],

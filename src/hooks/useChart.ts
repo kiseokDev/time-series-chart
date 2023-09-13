@@ -16,13 +16,12 @@ export const useChart = () => {
 
   const handleFilterById = (id: string) => {
     setSelectedId(id);
-    const filteredKeys = Object.keys(data).filter(key => data[key].id === id);
-    setFiltered(new Set(filteredKeys));
+    const filteredDatas = Object.keys(data).filter(key => data[key].id === id);
+    setFiltered(new Set(filteredDatas));
   };
 
   return {
     data,
-    // filtered,
     uniqueIds,
     handleFilterById,
     selectedId,
