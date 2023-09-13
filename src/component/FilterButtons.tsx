@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 interface FilterButtonsProps {
   uniqueIds: string[];
-  handleFilterById: (id: string) => void;
+  //eslint-disable-next-line no-unused-vars
+  handleFilterById: (id: string | '') => void;
 }
 const FilterButtons: React.FC<FilterButtonsProps> = ({
   uniqueIds,

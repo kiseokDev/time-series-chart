@@ -32,12 +32,12 @@ export const uniqueIdsState = selector<string[]>({
   },
 });
 
-export const filteredDataState = atom({
-  key: 'filteredDataState',
-  default: new Set(),
-});
+// export const filteredDataState = atom({
+//   key: 'filteredDataState',
+//   default: new Set(),
+// });
 
-export const selectedIdState = atom<string | null>({
+export const selectedIdState = atom<string | ''>({
   key: 'selectedIdState',
-  default: null,
+  default: '',
 });
