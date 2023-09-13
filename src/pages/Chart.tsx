@@ -2,6 +2,7 @@ import { useChart } from 'hooks/useChart';
 import Graph from '../component/Graph';
 import styled from 'styled-components';
 import FilterButtons from 'component/FilterButtons';
+import TestGraph from 'component/TestGraph';
 
 const ChartComponent = () => {
   const { data, uniqueIds, handleFilterById, selectedId } = useChart();
@@ -14,7 +15,12 @@ const ChartComponent = () => {
           handleFilterById={handleFilterById}
         />
       </ButtonContainer>
-      <Graph
+      {/* <Graph
+        data={data}
+        selectedId={selectedId}
+        handleFilterById={handleFilterById}
+      /> */}
+      <TestGraph
         data={data}
         selectedId={selectedId}
         handleFilterById={handleFilterById}
