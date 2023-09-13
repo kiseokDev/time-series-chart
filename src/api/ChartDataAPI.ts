@@ -1,8 +1,8 @@
 import { TimeSeriesData } from '../types';
 import { AxiosHttpClient } from './AxiosHttpClient';
 
-// const server = process.env.REACT_APP_SERVER_URL;
-const server = 'http://localhost:4000';
+const server = process.env.REACT_APP_SERVER_URL;
+// const server = 'http://localhost:4000';
 
 export class ChartDataAPI {
   #endPoint = 'data';
