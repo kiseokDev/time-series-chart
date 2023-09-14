@@ -4,7 +4,6 @@ import { TimeSeriesData } from 'types';
 import 'chartjs-adapter-moment';
 import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { useRef } from 'react';
-import { useChart } from 'hooks/useChart';
 
 interface Props {
   data: TimeSeriesData;
@@ -15,7 +14,6 @@ interface Props {
 export default function Graph({ data, selectedId, handleFilterById }: Props) {
   const chartRef = useRef(null);
   const allDates = Object.keys(data);
-  console.log(allDates);
 
   const onClick: React.MouseEventHandler<HTMLCanvasElement> = e => {
     if (chartRef.current) {
