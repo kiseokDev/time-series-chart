@@ -14,7 +14,6 @@ export const useGraph = (
       const elements = getElementsAtEvent(chartRef.current, e);
       if (elements.length > 0) {
         const firstElement = elements[0];
-
         const clickedDate = Object.keys(data)[firstElement.index];
         if (data[clickedDate]) {
           const clickedDataId = data[clickedDate].id;

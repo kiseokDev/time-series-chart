@@ -2,7 +2,6 @@ import { useChart } from 'hooks/useChart';
 import styled from 'styled-components';
 import FilterButtons from 'components/FilterButtons';
 import TestGraph from 'components/TestGraph';
-import Graph from 'components/Graph';
 
 const ChartPage = () => {
   const { data, uniqueIds, selectedId, setSelectedId } = useChart();
