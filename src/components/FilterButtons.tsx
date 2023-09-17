@@ -10,9 +10,18 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({
   handleFilterById,
 }) => (
   <>
-    <StyledButton onClick={() => handleFilterById('')}>해체</StyledButton>
+    <StyledButton
+      data-testid="filter-button"
+      onClick={() => handleFilterById('')}
+    >
+      해체
+    </StyledButton>
     {uniqueIds.map(id => (
-      <StyledButton key={id} onClick={() => handleFilterById(id)}>
+      <StyledButton
+        data-testid="filter-button"
+        key={id}
+        onClick={() => handleFilterById(id)}
+      >
         {id}
       </StyledButton>
     ))}

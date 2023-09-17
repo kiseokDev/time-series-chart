@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import { getDefaultTimeSeriesData } from 'service/timeSeriesData';
 import { TimeSeriesData } from 'types';
+import { extractUniqueIds } from 'utils/utils';
 //
 export const timeSeriesDataState = atom<TimeSeriesData | null>({
   key: 'timeSeriesDataState',
@@ -25,9 +26,7 @@ export const uniqueIdsState = selector<string[]>({
       return [];
     }
 
-    const uniqueIds = [
-      ...new Set(Object.values(timeSeriesData).map(data => data.id)),
-    ];
+    const uniqueIds = extractUniqueIds(timeSeriesData);
     return uniqueIds;
   },
 });

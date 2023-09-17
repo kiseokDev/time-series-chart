@@ -1,9 +1,10 @@
 import { useChart } from 'hooks/useChart';
 import styled from 'styled-components';
-import FilterButtons from 'component/FilterButtons';
-import TestGraph from 'component/TestGraph';
+import FilterButtons from 'components/FilterButtons';
+import TestGraph from 'components/TestGraph';
+import Graph from 'components/Graph';
 
-const ChartComponent = () => {
+const ChartPage = () => {
   const { data, uniqueIds, selectedId, setSelectedId } = useChart();
 
   const handleFilterById = (id: string) => {
@@ -31,7 +32,7 @@ const ChartComponent = () => {
     </GraphWrapper>
   );
 };
-export default ChartComponent;
+export default ChartPage;
 
 const ButtonContainer = styled.div`
   text-align: left;

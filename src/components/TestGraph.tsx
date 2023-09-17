@@ -1,9 +1,41 @@
-import 'chart.js/auto';
-import 'chartjs-adapter-moment';
-import { Chart } from 'react-chartjs-2';
+import { Chart, getElementsAtEvent } from 'react-chartjs-2';
 import { TimeSeriesData } from 'types';
-import { ChartOptions, ChartTypeRegistry } from 'chart.js';
+import 'chartjs-adapter-moment';
+import { useRef } from 'react';
+
+import {
+  Title,
+  Filler,
+  BarController,
+  ChartOptions,
+  ChartTypeRegistry,
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Legend,
+  Tooltip,
+  TimeScale,
+} from 'chart.js';
 import { useGraph } from 'hooks/useGraph';
+import { initConfig } from 'utils/chartConfig';
+
+// Register your components
+ChartJS.register(
+  Title,
+  Filler,
+  BarController,
+  TimeScale,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip
+);
 
 interface Props {
   data: TimeSeriesData;
@@ -19,47 +51,47 @@ export default function TestGraph({
 }: Props) {
   const { onClick, chartRef } = useGraph(data, handleFilterById);
 
-  // const config = initConfig(data, selectedId);
+  const config = initConfig(data, selectedId);
   // const options = initOptions(config);
 
-  const config = {
-    datasets: [
-      {
-        type: 'line' as const,
-        yAxisID: 'left-y-axis',
-        label: 'value_area',
-        data: Object.keys(data).map(date => ({
-          x: date,
-          y: data[date].value_area,
-          id: data[date].id,
-          value_area: data[date].value_area,
-          value_bar: data[date].value_bar,
-        })),
-        backgroundColor: 'rgba(230, 30, 113, 0.864)',
-        borderWidth: 0,
-        fill: true,
-        pointRadius: 0,
-        tension: 0.2,
-      },
-      {
-        type: 'bar' as const,
-        label: 'value_bar',
-        yAxisID: 'right-y-axis',
-        data: Object.keys(data).map(date => ({
-          x: date,
-          y: data[date].value_bar,
-          id: data[date].id,
-          value_area: data[date].value_area,
-          value_bar: data[date].value_bar,
-        })),
+  // const config = {
+  //   datasets: [
+  //     {
+  //       type: 'line' as const,
+  //       yAxisID: 'left-y-axis',
+  //       label: 'value_area',
+  //       data: Object.keys(data).map(date => ({
+  //         x: date,
+  //         y: data[date].value_area,
+  //         id: data[date].id,
+  //         value_area: data[date].value_area,
+  //         value_bar: data[date].value_bar,
+  //       })),
+  //       backgroundColor: 'rgba(230, 30, 113, 0.864)',
+  //       borderWidth: 0,
+  //       fill: true,
+  //       pointRadius: 0,
+  //       tension: 0.2,
+  //     },
+  //     {
+  //       type: 'bar' as const,
+  //       label: 'value_bar',
+  //       yAxisID: 'right-y-axis',
+  //       data: Object.keys(data).map(date => ({
+  //         x: date,
+  //         y: data[date].value_bar,
+  //         id: data[date].id,
+  //         value_area: data[date].value_area,
+  //         value_bar: data[date].value_bar,
+  //       })),
 
-        backgroundColor: Object.keys(data).map(date =>
-          data[date].id === selectedId ? 'darkblue' : '#69b7e8'
-        ),
-        borderWidth: 0,
-      },
-    ],
-  };
+  //       backgroundColor: Object.keys(data).map(date =>
+  //         data[date].id === selectedId ? 'darkblue' : '#69b7e8'
+  //       ),
+  //       borderWidth: 0,
+  //     },
+  //   ],
+  // };
 
   const options: ChartOptions<keyof ChartTypeRegistry> = {
     scales: {
