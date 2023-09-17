@@ -1,10 +1,41 @@
-import 'chart.js/auto';
-import { Chart, getElementsAtEvent } from 'react-chartjs-2';
+import { Chart as ChartComponent, getElementsAtEvent } from 'react-chartjs-2';
+// import 'chart.js/auto';
 import { TimeSeriesData } from 'types';
 import 'chartjs-adapter-moment';
-import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js';
 import { useRef } from 'react';
-import { useChart } from 'hooks/useChart';
+
+import {
+  Title,
+  Filler,
+  BarController,
+  ChartData,
+  ChartOptions,
+  ChartTypeRegistry,
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Legend,
+  Tooltip,
+  TimeScale,
+} from 'chart.js';
+
+// Register your components
+ChartJS.register(
+  Title,
+  Filler,
+  BarController,
+  TimeScale,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip
+);
 
 interface Props {
   data: TimeSeriesData;
@@ -15,7 +46,6 @@ interface Props {
 export default function Graph({ data, selectedId, handleFilterById }: Props) {
   const chartRef = useRef(null);
   const allDates = Object.keys(data);
-  console.log(allDates);
 
   const onClick: React.MouseEventHandler<HTMLCanvasElement> = e => {
     if (chartRef.current) {
@@ -138,7 +168,7 @@ export default function Graph({ data, selectedId, handleFilterById }: Props) {
   };
 
   return (
-    <Chart
+    <ChartComponent
       type="bar"
       data={config}
       options={options}

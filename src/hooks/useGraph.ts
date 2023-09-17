@@ -15,7 +15,6 @@ export const useGraph = (
       if (elements.length > 0) {
         const firstElement = elements[0];
 
-        // Ensure that data for the clicked date exists before accessing its properties
         const clickedDate = Object.keys(data)[firstElement.index];
         if (data[clickedDate]) {
           const clickedDataId = data[clickedDate].id;
