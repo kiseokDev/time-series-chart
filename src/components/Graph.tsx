@@ -3,6 +3,7 @@ import { TimeSeriesData } from 'types';
 import 'chartjs-adapter-moment';
 
 import {
+  LineController,
   Title,
   Filler,
   BarController,
@@ -22,6 +23,7 @@ import { initOptions } from 'utils/chartOptions';
 
 // Register your components
 ChartJS.register(
+  LineController,
   Title,
   Filler,
   BarController,
@@ -42,11 +44,7 @@ interface Props {
   handleFilterById: (id: string) => void;
 }
 
-export default function TestGraph({
-  data,
-  selectedId,
-  handleFilterById,
-}: Props) {
+export default function Graph({ data, selectedId, handleFilterById }: Props) {
   const { onClick, chartRef } = useGraph(data, handleFilterById);
   const config = initConfig(data, selectedId);
   const options = initOptions();
