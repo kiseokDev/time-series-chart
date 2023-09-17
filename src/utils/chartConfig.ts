@@ -1,8 +1,8 @@
 import { ChartData, ChartTypeRegistry } from 'chart.js';
-import { ChartataSet, TimeSeriesData } from 'types';
+import { CustomDataPoint, TimeSeriesData } from 'types';
 
 export function initConfig(data: TimeSeriesData, selectedId: string | null) {
-  const config: ChartData<keyof ChartTypeRegistry, ChartataSet[]> = {
+  const config: ChartData<keyof ChartTypeRegistry, CustomDataPoint[]> = {
     datasets: [
       {
         type: 'line' as const,

@@ -1,7 +1,6 @@
 import { useChart } from 'hooks/useChart';
 import styled from 'styled-components';
 import FilterButtons from 'components/FilterButtons';
-import TestGraph from 'components/TestGraph';
 import Graph from 'components/Graph';
 
 const ChartPage = () => {
@@ -19,12 +18,7 @@ const ChartPage = () => {
           handleFilterById={handleFilterById}
         />
       </ButtonContainer>
-      {/* <Graph
-        data={data}
-        selectedId={selectedId}
-        handleFilterById={handleFilterById}
-      /> */}
-      <TestGraph
+      <Graph
         data={data}
         selectedId={selectedId}
         handleFilterById={handleFilterById}
